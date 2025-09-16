@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Beautiful Memories</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Parisienne&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+  :root {
+    --bg: #0f0f14;
+    --soft: #1f2030;
+    --text: #f7f7fb;
+    --muted: #c7c9d9;
+    --accent: #ff6b6b;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: radial-gradient(1000px 700px at 80% -10%, #1b1730, #0f0f14);
+    color: var(--text);
+    font-family: Poppins, sans-serif;
+    line-height: 1.6;
+  }
+
+  header.hero {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .title {
+    font-family: Parisienne, cursive;
+    font-size: clamp(32px, 8vw, 70px);
+  }
+
+  .subtitle {
+    opacity: 0.8;
+    font-size: 16px;
+  }
+
+  .section {
+    max-width: 95%;
+    margin: 30px auto;
+    padding: 0 10px;
+  }
+
+  .section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: var(--accent);
+  }
+
+  /* Highlights */
+  .highlights {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .highlights figure {
+    flex: 1 1 100%;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .highlights img,
+  .multi-images img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+  }
+
+  .multi-images {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Videos */
+  .videos {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .videos video {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Gallery */
+  .gallery {
+    columns: 1;
+    gap: 12px;
+  }
+
+  .gallery img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* Timeline */
+  .timeline {
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+    padding-left: 15px;
+  }
+
+  .titem {
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .titem::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .date {
+    display: block;
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  .event {
+    font-size: 14px;
+  }
+
+  /* Love Letter */
+  .letter {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    font-style: italic;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 12px;
+    opacity: 0.6;
+  }
+
+  /* Love note screen */
+  .love-note {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .love-note h1 {
+    font-family: "Parisienne", cursive;
+    font-size: clamp(28px, 8vw, 60px);
+    color: var(--accent);
+    margin-bottom: 15px;
+  }
+
+  .love-note p {
+    max-width: 95%;
+    margin: 0 auto 15px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .love-note .btn,
+  #loveQuestion button,
+  #noteContent button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s ease;
+    width: 90%;
+    max-width: 250px;
+  }
+
+  .love-note .btn:hover,
+  #loveQuestion button:hover,
+  #noteContent button:hover {
+    background: #ff4b4b;
+    transform: scale(1.05);
+  }
+
+  /* Floating hearts */
+  @keyframes float {
+    0% {
+      transform: translateY(100vh) scale(0.6);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-10vh) scale(1);
+      opacity: 0;
+    }
+  }
+
+  .heart {
+    position: absolute;
+    bottom: 0;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+  }
+
+  #hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .love-note,
+  .memories {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section {
+    animation: fadeInUp 0.8s ease both;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mobile tweaks */
+  @media (max-width: 480px) {
+    .highlights figure,
+    .multi-images {
+      flex-direction: column;
+    }
+
+    .gallery {
+      columns: 1;
+    }
+
+    .videos video {
+      width: 100%;
+    }
+
+    .section h2 {
+      font-size: 20px;
+    }
+
+    .love-note h1 {
+      font-size: clamp(24px, 10vw, 50px);
+    }
+
+    .love-note p {
+      font-size: 14px;
+    }
+
+    .letter p {
+      font-size: 14px;
+    }
+  }
+</style>
+
+  </head>
+  <body>
+    <!-- Floating hearts -->
+    <div id="hearts">
+      <span class="heart" style="left: 10%; animation-delay: 0s">❤️</span>
+      <span class="heart" style="left: 30%; animation-delay: 2s">💖</span>
+      <span class="heart" style="left: 50%; animation-delay: 4s">💕</span>
+      <span class="heart" style="left: 70%; animation-delay: 1s">💘</span>
+      <span class="heart" style="left: 90%; animation-delay: 3s">💓</span>
+    </div>
+
+    <!-- Love Note Section -->
+    <div class="love-note" id="loveNote">
+      <h1>💌 A Note for You</h1>
+      <p>
+        My love, you’re the most beautiful part of my life. Every smile, every
+        memory, every moment with you is precious.
+      </p>
+
+      <!-- Love question -->
+      <div id="loveQuestion">
+        <p>Do you love me? 💖</p>
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+        <p id="msg"></p>
+      </div>
+
+      <!-- Note content hidden initially -->
+      <div id="noteContent" style="display: none">
+        <p>Thank you for saying Yes! Now you can see our memories 💌</p>
+        <button id="openMemoriesBtn">Open Our Memories ✨</button>
+      </div>
+    </div>
+
+    <!-- Hidden checkbox to control memories -->
+    <input type="checkbox" id="showMemories" hidden />
+
+    <!-- Memories Section -->
+    <div class="memories">
+      <header class="hero">
+        <h1 class="title">Our Beautiful Memories</h1>
+        <p class="subtitle">A journey full of love ❤️</p>
+      </header>
+
+      <!-- Highlights Section -->
+      <section class="section">
+        <h2>Highlights</h2>
+        <div class="highlights">
+          <figure>
+            <img
+              src="https://raw.githubusercontent.com/aritrobhattacharjee12-creator/beautiful-memories/main/WhatsAppImage2025-09-09at10.53.55_328dc09b.jpg"
+              alt="Highlight 1"
+            />
+            <figcaption>First movie together 🎬</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="https://raw.githubusercontent.com/aritrobhattacharjee12-creator/beautiful-memories/main/WhatsAppImage2025-08-26at16.47.34_7428d922.jpg"
+              alt="Highlight 2"
+            />
+            <figcaption>A beautiful day with you 🌅</figcaption>
+          </figure>
+          <figure>
+            <div class="multi-images">
+              <img
+                src="https://raw.githubusercontent.com/aritrobhattacharjee12-creator/beautiful-memories/main/WhatsAppImage2025-09-09at11.14.49_aad29ff0.jpg"
+                alt="Goofy selfie 1"
+              />
+              <img
+                src="https://raw.githubusercontent.com/aritrobhattacharjee12-creator/beautiful-memories/main/WhatsAppImage2025-09-09at11.15.24_74d89abc.jpg"
+                alt="Goofy selfie 2"
+              />
+            </div>
+            <figcaption>Goofy selfies 🤪</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Videos Section -->
+      <section class="section">
+        <h2>Our Videos 🎬</h2>
+        <div class="videos">
+          <video controls>
+            <source
+              src="https://raw.githubusercontent.com/aritrobhattacharjee12-creator/beautiful-memories/main/WhatsAppVideo2025-08-26at19.40.46_6069a8d4.mp4"
+              type="video/mp4"
+            /> your broeser dose not support the video tag
+          </video>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section class="section">
+        <h2>Scrapbook</h2>
+        <div class="gallery">
+          <img
+            src="https://raw.githubusercontent.com/aritrobhattacharjee12-creator/beautiful-memories/main/WhatsAppImage2025-09-09at11.27.37_0f9402ed.jpg"
+            alt="Gallery 1"
+          />
+          <img
+            src="https://raw.githubusercontent.com/aritrobhattacharjee12-creator/beautiful-memories/main/WhatsAppImage2025-09-09at11.34.26_cde30450.jpg"
+            alt="Gallery 2"
+          />
+          <img
+            src="https://raw.githubusercontent.com/aritrobhattacharjee12-creator/beautiful-memories/main/WhatsAppImage2025-09-09at11.28.49_ced2c590.jpg"
+            alt="Gallery 3"
+          />
+        </div>
+      </section>
+
+      <!-- Timeline Section -->
+      <section class="section">
+        <h2>Our Timeline</h2>
+        <div class="timeline">
+          <div class="titem">
+            <span class="date">2025-04-02</span>
+            <span class="event">We met 💘</span>
+          </div>
+          <div class="titem">
+            <span class="date">2025-05-08</span>
+            <span class="event">First Date 🌸</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Love Letter Section -->
+      <section class="section letter">
+        <h2>A Note For You 💌</h2>
+        <p>
+          My love, thank you for being my sunshine ☀️. Every day with you is a
+          gift, and I promise to cherish every moment we share. Forever yours 💖
+        </p>
+      </section>
+
+      <footer>
+        <small>Made with ❤️ just for us.</small>
+      </footer>
+    </div>
+
+    <!-- JS -->
+    <script>
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+      const msg = document.getElementById("msg");
+      const loveQuestion = document.getElementById("loveQuestion");
+      const noteContent = document.getElementById("noteContent");
+      const openMemoriesBtn = document.getElementById("openMemoriesBtn");
+      const memoriesSection = document.querySelector(".memories");
+      let noClicked = 0;
+
+      noBtn.addEventListener("click", () => {
+        noClicked++;
+        msg.textContent = "Please click Yes 💖";
+        if (noClicked >= 2) noBtn.style.display = "none";
+      });
+
+      yesBtn.addEventListener("click", () => {
+        loveQuestion.style.display = "none";
+        noteContent.style.display = "block";
+      });
+
+      openMemoriesBtn.addEventListener("click", () => {
+        document.getElementById("showMemories").checked = true;
+        // Scroll down to memories section
+        memoriesSection.scrollIntoView({ behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>
